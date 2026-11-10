@@ -8,7 +8,26 @@ def home_view(request: HttpRequest):
 
 
 def sites_view(request: HttpRequest):
-    return render(request, "main/sites.html", {"sites": sites})
+    selected = request.GET.get("region")
+
+    regions = []
+    for site in sites:
+        if site["region"] not in regions:
+            regions.append(site["region"])
+
+    if selected:
+        result = []
+        for site in sites:
+            if site["region"] == selected:
+                result.append(site)
+    else:
+        result = sites
+
+    return render(request, "main/sites.html", {
+        "sites": result,
+        "regions": regions,
+        "selected": selected,
+    })
 
 
 def site_detail_view(request: HttpRequest, slug):

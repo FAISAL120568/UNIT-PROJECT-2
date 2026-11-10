@@ -1,0 +1,38 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block title %}المواقع | آثار{% endblock %}
+
+{% block content %}
+<section class="container py-5">
+  <h1 class="section-title reveal">مواقع التراث العالمي</h1>
+
+  <!-- أزرار الفلتر -->
+  <div class="d-flex flex-wrap gap-2 my-4 reveal">
+    <a href="{% url 'main:sites_view' %}"
+       class="btn {% if not selected %}btn-accent{% else %}btn-outline-secondary{% endif %}">الكل</a>
+    {% for r in regions %}
+      <a href="{% url 'main:sites_view' %}?region={{ r|urlencode }}"
+         class="btn {% if r == selected %}btn-accent{% else %}btn-outline-secondary{% endif %}">{{ r }}</a>
+    {% endfor %}
+  </div>
+
+  <!-- البطاقات -->
+  <div class="row g-4">
+    {% for site in sites %}
+      <div class="col-md-6 col-lg-4 reveal">
+        <a href="{% url 'main:site_detail_view' site.slug %}" class="site-card d-block text-decoration-none">
+          <img src="{% static 'images/sites/' %}{{ site.slug }}/1.jpg" alt="{{ site.name }}" onerror="this.style.display='none'">
+          <div class="p-3">
+            <h3>{{ site.name }}</h3>
+            <p><i class="bi bi-geo-alt"></i> {{ site.region }}</p>
+            <p>{{ site.tagline }}</p>
+          </div>
+        </a>
+      </div>
+    {% empty %}
+      <p>ما فيه مواقع في هذي المنطقة.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}
