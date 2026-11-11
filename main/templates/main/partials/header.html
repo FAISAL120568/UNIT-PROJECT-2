@@ -1,4 +1,3 @@
-<!-- شريط تقدم القراءة (تحريكه في main.js) -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
 <header class="site-header">
@@ -20,6 +19,12 @@
                     <li class="nav-item">
                         <a class="nav-link {% if request.resolver_match.url_name == 'sites_view' or request.resolver_match.url_name == 'site_detail_view' %}active{% endif %}" href="{% url 'main:sites_view' %}">المواقع</a>
                     </li>
+                     <li class="nav-item">
+                <a class="nav-link {% if request.resolver_match.url_name == 'favorites_view' %}active{% endif %}" href="{% url 'main:favorites_view' %}">المفضلة</a>
+                     </li>
+                     <li class="nav-item">
+                         <a class="nav-link {% if request.resolver_match.url_name == 'about_view' %}active{% endif %}" href="{% url 'main:about_view' %}">عن المشروع</a>
+                     </li>
                 </ul>
 
                 <a href="{% url 'main:toggle_theme' %}" class="theme-btn" aria-label="تبديل الوضع">

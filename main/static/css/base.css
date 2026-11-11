@@ -1,4 +1,3 @@
-/* ========== عام ========== */
 body {
     background: var(--bg);
     color: var(--text);
@@ -19,7 +18,6 @@ main {
     min-height: 60vh;
 }
 
-/* ========== الـ Header ========== */
 .site-header {
     position: sticky;
     top: 0;
@@ -47,7 +45,6 @@ main {
     color: var(--text);
 }
 
-/* خط ذهبي ينزلق تحت الرابط */
 .site-header .nav-link::after {
     content: "";
     position: absolute;
@@ -86,7 +83,6 @@ main {
     box-shadow: none;
 }
 
-/* ========== الـ Footer ========== */
 .site-footer {
     background: var(--bg-soft);
     border-top: 1px solid var(--border);

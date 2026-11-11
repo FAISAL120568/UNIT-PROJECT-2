@@ -9,7 +9,6 @@
 {% endblock %}
 
 {% block content %}
-    <!-- الواجهة -->
     <section class="site-hero" style="background-image: url('{% static 'images/sites/' %}{{ site.slug }}/1.jpg');">
         <div class="container">
             <nav class="crumbs">
@@ -22,18 +21,25 @@
             <p class="eyebrow"><i class="bi bi-geo-alt"></i> {{ site.region }} · سُجّل في اليونسكو {{ site.year }}</p>
             <h1>{{ site.name }}</h1>
             <p class="hero-text">{{ site.tagline }}</p>
+                        <button type="button" class="copy-link" id="copyLink">
+                <i class="bi bi-link-45deg"></i> <span>نسخ الرابط</span>
+            </button>
+            <a href="{% url 'main:toggle_favorite' site.slug %}" class="copy-link ms-3">
+                {% if is_favorite %}
+                    <i class="bi bi-heart-fill"></i> <span>في المفضلة</span>
+                {% else %}
+                    <i class="bi bi-heart"></i> <span>أضف للمفضلة</span>
+                {% endif %}
+            </a>
         </div>
     </section>
-
-    <!-- نبذة -->
     <section class="section">
-        <div class="container intro reveal">
+        <div class="container reveal">
             <h2 class="section-title">نبذة</h2>
             <p>{% if site.about %}{{ site.about }}{% else %}{{ site.brief }}{% endif %}</p>
         </div>
     </section>
 
-    <!-- معرض الصور -->
     {% if site.gallery %}
     <section class="section gallery-section">
         <div class="container">
@@ -64,7 +70,6 @@
     </section>
     {% endif %}
 
-    <!-- أهم المعالم -->
     {% if site.highlights %}
     <section class="section">
         <div class="container">
@@ -86,7 +91,6 @@
     </section>
     {% endif %}
 
-    <!-- الخط الزمني -->
     {% if site.timeline %}
     <section class="section timeline-section">
         <div class="container">
@@ -103,7 +107,6 @@
     </section>
     {% endif %}
 
-    <!-- الفعاليات -->
     {% if site.events %}
     <section class="section">
         <div class="container">
@@ -123,7 +126,6 @@
     </section>
     {% endif %}
 
-        <!-- مواقع أخرى -->
     <section class="section">
         <div class="container">
             <h2 class="section-title reveal">مواقع أخرى قد تعجبك</h2>
@@ -150,10 +152,5 @@
         <a href="{% url 'main:sites_view' %}" class="back-link"><i class="bi bi-arrow-right"></i> العودة لكل المواقع</a>
     </div>
     
-     <!-- نسخ الرابط -->
-        <div class="container text-center pb-5">
-        <button type="button" class="btn btn-filter" id="copyLink">
-            <i class="bi bi-link-45deg"></i> <span>نسخ الرابط</span>
-        </button>
-    </div>
+
 {% endblock %}

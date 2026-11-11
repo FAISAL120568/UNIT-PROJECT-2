@@ -1,4 +1,3 @@
-// ===== شريط التقدم + زر الأعلى =====
 const progress = document.getElementById("scrollProgress");
 const backToTop = document.getElementById("backToTop");
 
@@ -19,7 +18,6 @@ if (backToTop) {
     });
 }
 
-// ===== ظهور تدريجي للعناصر =====
 const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -30,7 +28,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0, rootMargin: "0px 0px -40px 0px" });
 document.querySelectorAll(".reveal").forEach((el) => revealObserver.observe(el));
 
-// ===== عدّاد الأرقام =====
 function animateCounter(el) {
     const target = Number(el.dataset.target);
     const duration = 1800;
@@ -59,7 +56,6 @@ const counterObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll(".stat-num").forEach((el) => counterObserver.observe(el));
 
-// ===== نسخ رابط الصفحة =====
 const copyBtn = document.getElementById("copyLink");
 
 if (copyBtn) {

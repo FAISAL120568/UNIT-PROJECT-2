@@ -8,9 +8,11 @@
 
             <div class="col-6 col-md-3">
                 <h6>روابط</h6>
-                <ul class="footer-links">
+                                <ul class="footer-links">
                     <li><a href="{% url 'main:home_view' %}">الرئيسية</a></li>
                     <li><a href="{% url 'main:sites_view' %}">المواقع</a></li>
+                    <li><a href="{% url 'main:favorites_view' %}">المفضلة</a></li>
+                    <li><a href="{% url 'main:about_view' %}">عن المشروع</a></li>
                 </ul>
             </div>
 
@@ -34,7 +36,6 @@
     </div>
 </footer>
 
-<!-- زر الرجوع للأعلى (تفعيله في main.js) -->
 <button class="back-to-top" id="backToTop" aria-label="للأعلى">
     <i class="bi bi-arrow-up"></i>
 </button>
