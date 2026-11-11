@@ -58,3 +58,18 @@ const counterObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.6 });
 
 document.querySelectorAll(".stat-num").forEach((el) => counterObserver.observe(el));
+
+// ===== نسخ رابط الصفحة =====
+const copyBtn = document.getElementById("copyLink");
+
+if (copyBtn) {
+    copyBtn.addEventListener("click", () => {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+            const label = copyBtn.querySelector("span");
+            label.textContent = "تم النسخ ✓";
+            setTimeout(() => {
+                label.textContent = "نسخ الرابط";
+            }, 2000);
+        });
+    });
+}

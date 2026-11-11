@@ -13,13 +13,13 @@
 
 /* ========== الوضع الداكن ========== */
 body.dark {
-    --bg: #14110d;
-    --bg-soft: #1d1812;
-    --card: #1f1a13;
-    --text: #f3ebdc;
-    --text-muted: #b0a58f;
-    --border: #2e271d;
-    --accent: #d4a24c;
-    --accent-hover: #e6b866;
-    --shadow: 0 8px 28px rgba(0, 0, 0, 0.55);
+    --bg: #211b14;
+    --bg-soft: #2b2319;
+    --card: #342b1f;
+    --text: #f4ecdd;
+    --text-muted: #c2b69f;
+    --border: #4a3e2c;
+    --accent: #d9a84f;
+    --accent-hover: #ecc072;
+    --shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
 }

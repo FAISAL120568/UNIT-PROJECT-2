@@ -11,12 +11,19 @@
     <section class="container py-5">
         <h1 class="section-title reveal">مواقع التراث العالمي</h1>
 
+                <!-- البحث -->
+        <form method="get" action="{% url 'main:sites_view' %}" class="search-form reveal">
+            {% if selected %}<input type="hidden" name="region" value="{{ selected }}">{% endif %}
+            <input type="text" name="q" value="{{ query }}" class="search-input" placeholder="ابحث عن موقع...">
+            <button type="submit" class="btn btn-accent"><i class="bi bi-search"></i> بحث</button>
+        </form>
+
         <!-- أزرار الفلتر -->
         <div class="d-flex flex-wrap gap-2 my-4 reveal">
-            <a href="{% url 'main:sites_view' %}"
-               class="btn {% if not selected %}btn-accent{% else %}btn-outline-secondary{% endif %}">الكل</a>
+            <a href="{% url 'main:sites_view' %}{% if query %}?q={{ query|urlencode }}{% endif %}"
+               class="btn {% if not selected %}btn-accent{% else %}btn-filter{% endif %}">الكل</a>
             {% for r in regions %}
-                <a href="{% url 'main:sites_view' %}?region={{ r|urlencode }}"
+                <a href="{% url 'main:sites_view' %}?region={{ r|urlencode }}{% if query %}&q={{ query|urlencode }}{% endif %}"
                    class="btn {% if r == selected %}btn-accent{% else %}btn-filter{% endif %}">{{ r }}</a>
             {% endfor %}
         </div>
@@ -37,7 +44,7 @@
                     </a>
                 </div>
             {% empty %}
-                <p>ما فيه مواقع في هذي المنطقة.</p>
+                <p>ما لقينا مواقع تطابق بحثك.</p>
             {% endfor %}
         </div>
     </section>

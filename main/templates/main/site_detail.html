@@ -4,6 +4,7 @@
 {% block title %}{{ site.name }} | آثار{% endblock %}
 
 {% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
     <link rel="stylesheet" href="{% static 'css/site.css' %}">
 {% endblock %}
 
@@ -122,7 +123,37 @@
     </section>
     {% endif %}
 
+        <!-- مواقع أخرى -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title reveal">مواقع أخرى قد تعجبك</h2>
+            <div class="row g-4 mt-1">
+                {% for other in others %}
+                    <div class="col-lg-4 col-md-6 reveal">
+                        <a href="{% url 'main:site_detail_view' other.slug %}" class="site-card">
+                            <div class="site-card-img">
+                                <img src="{% static 'images/sites/' %}{{ other.slug }}/1.jpg" alt="{{ other.name }}" onerror="this.style.display='none'">
+                            </div>
+                            <div class="site-card-body">
+                                <h3>{{ other.name }}</h3>
+                                <p class="site-card-region"><i class="bi bi-geo-alt"></i> {{ other.region }}</p>
+                                <p>{{ other.tagline }}</p>
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
     <div class="container back-wrap">
         <a href="{% url 'main:sites_view' %}" class="back-link"><i class="bi bi-arrow-right"></i> العودة لكل المواقع</a>
+    </div>
+    
+     <!-- نسخ الرابط -->
+        <div class="container text-center pb-5">
+        <button type="button" class="btn btn-filter" id="copyLink">
+            <i class="bi bi-link-45deg"></i> <span>نسخ الرابط</span>
+        </button>
     </div>
 {% endblock %}

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpRequest
 from .data.sites import sites
+import random
 
 
 def home_view(request: HttpRequest):
@@ -9,31 +10,42 @@ def home_view(request: HttpRequest):
 
 def sites_view(request: HttpRequest):
     selected = request.GET.get("region")
+    query = request.GET.get("q", "").strip()
 
     regions = []
     for site in sites:
         if site["region"] not in regions:
             regions.append(site["region"])
 
-    if selected:
         result = []
-        for site in sites:
-            if site["region"] == selected:
-                result.append(site)
-    else:
-        result = sites
+    for site in sites:
+        if selected and site["region"] != selected:
+            continue
+
+        text = site["name"] + " " + site["region"] + " " + site["tagline"]
+        if query and query not in text:
+            continue
+
+        result.append(site)
 
     return render(request, "main/sites.html", {
         "sites": result,
         "regions": regions,
         "selected": selected,
+        "query": query,
     })
-
 
 def site_detail_view(request: HttpRequest, slug):
     for site in sites:
         if site["slug"] == slug:
-            return render(request, "main/site_detail.html", {"site": site})
+            others = []
+            for other in sites:
+                if other["slug"] != slug:
+                    others.append(other)
+            return render(request, "main/site_detail.html", {
+                "site": site,
+               "others": random.sample(others, 3),
+            })
     return render(request, "main/404.html", status=404)
 
 
