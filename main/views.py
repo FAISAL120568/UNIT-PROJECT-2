@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpRequest, Http404
+from django.http import HttpRequest
 from .data.sites import sites
 
 
@@ -34,7 +34,7 @@ def site_detail_view(request: HttpRequest, slug):
     for site in sites:
         if site["slug"] == slug:
             return render(request, "main/site_detail.html", {"site": site})
-    raise Http404("الموقع غير موجود")
+    return render(request, "main/404.html", status=404)
 
 
 def toggle_theme(request: HttpRequest):

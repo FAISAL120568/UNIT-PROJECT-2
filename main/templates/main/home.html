@@ -10,7 +10,11 @@
 {% block content %}
     <!-- الواجهة -->
     <section class="home-hero" style="background-image: url('{% static 'images/home/hero.jpg' %}');">
-        <div class="container">
+    <video class="hero-video" autoplay muted loop playsinline preload="auto"
+           poster="{% static 'images/home/hero.jpg' %}">
+        <source src="{% static 'videos/hero.mp4' %}" type="video/mp4">
+    </video>
+    <div class="container">
             <p class="eyebrow">التراث العالمي في المملكة</p>
             <h1>حيث يتحدث التاريخ<br>من جديد</h1>
             <p class="hero-text">رحلة بين مدن منحوتة في الصخر، وواحات تعمر منذ آلاف السنين، ونقوش تحكي قصة الإنسان.</p>
